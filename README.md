@@ -1,84 +1,97 @@
 # Python Reverse Shell (Client-Server)
 
-A simple Python-based reverse shell that allows a server to remotely connect to and execute commands on a client machine via a TCP socket connection.
+![Language](https://img.shields.io/badge/Language-Python-blue)
+![Status](https://img.shields.io/badge/Status-Experimental-orange)
+![Networking](https://img.shields.io/badge/Type-Reverse%20Shell-red)
+![License](https://img.shields.io/badge/License-Educational-lightgrey)
 
-> ⚠️ **Disclaimer**: This project is for educational purposes only. Do not use it on systems you do not own or have explicit permission to test.
+## Overview
+
+This project implements a basic **reverse shell** using Python sockets. It enables a server to remotely execute commands on connected client machines over a TCP connection.
+
+The system is designed to demonstrate concepts in:
+
+* Network programming
+* Client-server architecture
+* Remote command execution
+* Concurrent connection handling
+
+---
+
+## Architecture
+
+The system follows a client-server model:
+
+* **Server (`server.py`)**
+
+  * Listens for incoming connections
+  * Manages multiple clients
+  * Provides an interactive command interface
+
+* **Client (`client.py`)**
+
+  * Initiates connection to the server
+  * Executes received commands
+  * Returns command output
 
 ---
 
 ## Features
 
-* Reverse TCP connection (client connects to server)
+* Reverse TCP connection (client → server)
+* Multi-client handling using threading
 * Remote command execution
-* Multi-client handling
+* Directory navigation support (`cd`)
 * Interactive shell interface
-* Directory navigation (`cd` support)
-* Threaded server for handling connections
-* Basic connection management (list, select, terminate)
+* Connection management (list, select, terminate)
 
 ---
 
 ## Project Structure
 
-```
+```bash
 .
-├── client.py   # Client-side reverse shell
-└── server.py   # Server-side controller
+├── client.py   # Reverse shell client
+├── server.py   # Command and control server
+└── README.md   # Documentation
 ```
 
 ---
 
 ## How It Works
 
-1. The **server** listens for incoming connections.
-2. The **client** initiates a connection to the server.
-3. Once connected:
+1. The server starts and listens on a specified IP and port
+2. The client connects to the server
+3. The server can:
 
-   * The server can send commands.
-   * The client executes them and returns the output.
-
----
-
-## Getting Started
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/yourusername/reverse-shell-python.git
-cd reverse-shell-python
-```
+   * View active connections
+   * Select a client
+   * Execute commands remotely
+4. The client executes commands and returns output
 
 ---
 
-### 2. Configure IP Address
+## Setup and Usage
 
-Edit both files and replace:
+### 1. Configure IP Address
+
+Update both files:
 
 ```python
-host = "192.168.0.75"
+host = "YOUR_SERVER_IP"
 ```
-
-with your server's IP address.
 
 ---
 
-### 3. Start the Server
+### 2. Start Server
 
 ```bash
 python server.py
 ```
 
-You should see:
-
-```
-Binding the Port: 9978
-```
-
 ---
 
-### 4. Run the Client
-
-On the target machine:
+### 3. Run Client
 
 ```bash
 python client.py
@@ -88,90 +101,77 @@ python client.py
 
 ## Server Commands
 
-| Command       | Description                  |
-| ------------- | ---------------------------- |
-| `list`        | Show all active connections  |
-| `select <id>` | Connect to a specific client |
-| `end <id>`    | Terminate a connection       |
-| `help`        | Show available commands      |
+| Command     | Description                     |
+| ----------- | ------------------------------- |
+| list        | List all active connections     |
+| select <id> | Interact with a specific client |
+| end <id>    | Terminate a connection          |
+| help        | Display available commands      |
 
 ---
 
-## Client Interaction
+## Example Workflow
 
-After selecting a client:
+```
+turtle> list
+0   192.168.0.10   54321
 
-* Enter any system command (e.g., `dir`, `ls`, `whoami`)
-* Use `cd <directory>` to change directories
-* Type `quit` to exit the session
+turtle> select 0
+192.168.0.10> whoami
+user
+
+192.168.0.10> cd Desktop
+```
 
 ---
 
 ## Technical Details
 
-### Client
-
-* Uses `socket` for communication
-* Executes commands via `subprocess.Popen`
-* Handles:
-
-  * Command execution
-  * Directory changes
-  * Error handling
-  * Encoding issues (UTF-8 safe)
-
-### Server
-
-* Multi-threaded using `threading`
-* Maintains:
-
-  * Active connections list
-  * Client addresses
-* Provides interactive CLI (`turtle>` prompt)
+* Uses Python `socket` module for communication
+* Uses `subprocess.Popen` for command execution
+* Handles encoding issues with UTF-8 fallbacks
+* Thread-based architecture for concurrency
 
 ---
 
-## ⚠️ Security Notice
+## Security Notice
 
-This tool:
+This implementation:
 
-* Does **not** use encryption
-* Does **not** implement authentication
-* Sends data in plain text
+* Does not include encryption
+* Does not implement authentication
+* Transmits data in plain text
 
-⚠️ It is **not secure** for real-world deployment.
+It is not secure and must only be used in controlled, educational environments.
 
 ---
 
-## Possible Improvements
+## Limitations
 
-* Add encryption (e.g., SSL/TLS)
-* Implement authentication
+* No encryption (susceptible to interception)
+* No authentication mechanism
+* Limited error recovery
+* Basic command parsing
+
+---
+
+## Future Improvements
+
+* Implement SSL/TLS encryption
+* Add authentication layer
 * Improve command handling
-* Add persistence options
-* Create GUI interface
-* Logging and auditing
+* Add logging and monitoring
+* Develop a graphical interface
+
+---
+
+## Author
+
+Oluwasanmi Longe
+GitHub: https://github.com/sanmilonge
 
 ---
 
 ## License
 
-This project is licensed under the MIT License.
-
----
-
-## Acknowledgements
-
-Built for learning purposes in:
-
-* Networking
-* Python sockets
-* Remote command execution
-
----
-
-## Final Note
-
-Use responsibly. Unauthorized access to systems is illegal.
-
----
+This project is intended for educational purposes only.

@@ -1,4 +1,4 @@
-# 🐍 Python Reverse Shell (Client-Server)
+# Python Reverse Shell (Client-Server)
 
 A simple Python-based reverse shell that allows a server to remotely connect to and execute commands on a client machine via a TCP socket connection.
 
@@ -6,7 +6,7 @@ A simple Python-based reverse shell that allows a server to remotely connect to 
 
 ---
 
-## 📌 Features
+## Features
 
 * Reverse TCP connection (client connects to server)
 * Remote command execution
@@ -18,7 +18,7 @@ A simple Python-based reverse shell that allows a server to remotely connect to 
 
 ---
 
-## 🗂️ Project Structure
+## Project Structure
 
 ```
 .
@@ -28,7 +28,7 @@ A simple Python-based reverse shell that allows a server to remotely connect to 
 
 ---
 
-## ⚙️ How It Works
+## How It Works
 
 1. The **server** listens for incoming connections.
 2. The **client** initiates a connection to the server.
@@ -39,7 +39,7 @@ A simple Python-based reverse shell that allows a server to remotely connect to 
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Clone the Repository
 
@@ -86,7 +86,7 @@ python client.py
 
 ---
 
-## 🖥️ Server Commands
+## Server Commands
 
 | Command       | Description                  |
 | ------------- | ---------------------------- |
@@ -97,7 +97,7 @@ python client.py
 
 ---
 
-## 💻 Client Interaction
+## Client Interaction
 
 After selecting a client:
 
@@ -107,7 +107,7 @@ After selecting a client:
 
 ---
 
-## 🧠 Technical Details
+## Technical Details
 
 ### Client
 
@@ -143,7 +143,7 @@ This tool:
 
 ---
 
-## 🛠️ Possible Improvements
+## Possible Improvements
 
 * Add encryption (e.g., SSL/TLS)
 * Implement authentication
@@ -154,13 +154,13 @@ This tool:
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License.
 
 ---
 
-## 🙏 Acknowledgements
+## Acknowledgements
 
 Built for learning purposes in:
 
@@ -170,7 +170,7 @@ Built for learning purposes in:
 
 ---
 
-## ⚡ Final Note
+## Final Note
 
 Use responsibly. Unauthorized access to systems is illegal.
 
